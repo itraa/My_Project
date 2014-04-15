@@ -113,7 +113,7 @@ class mice_list(db.Model):
     Gender = db.Column(db.String(6))
     Date_of_birth = db.Column(db.String(10))
     Date_of_weaning = db.Column(db.String(10))
-    Age = db.Column(db.String(50))
+#    Age = db.Column(db.String(50))
     Status = db.Column(db.String(100))
     Use = db.Column(db.String(20))
     Date_removed = db.Column(db.String(10))

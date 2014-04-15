@@ -2,6 +2,8 @@ import flask, flask.views
 import os
 import sys
 import utils
+from datetime import date
+import datetime
 from flask_sqlalchemy import SQLAlchemy
 from models import *
 
@@ -25,12 +27,15 @@ class create_mice_list(flask.views.MethodView):
     @utils.login_required
     def post(self):
 
-#datetime.date(*map(int, pups_born_date.split('-'))) + datetime.timedelta(days=21)
+        date_format = "%Y-%m-%d"
+        today = date.today()
+        birth_date = flask.request.form['dateofbirth']
+        born = datetime.datetime.strptime(birth_date,date_format)
+        age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
-#        mouse_birth_date = flask.request.form['date_of_birth']
+#datetime.date(*map(int, pups_born_date.split('-'))) + datetime.timedelta(days=21)
 #        date_format = "%Y-%m-%d"
 #        birth_date = flask.request.form['dateofbirth']
-        birth_date = "2013-12-24"
 #        start = datetime.strptime(birth_date,date_format)
 #        end = datetime.strptime(str(date.today()),date_format)
         
@@ -42,8 +47,8 @@ class create_mice_list(flask.views.MethodView):
                             flask.request.form['dateofbirth'],
                             flask.request.form['dateofweaning'],
 #                            flask.request.form['age'],
+                            age,   
 #                            (date.today() - date(*map(int, birth_date.split('-')))).days,
-#                            'A',
                             flask.request.form['status'],
                             flask.request.form['bcorigin'],
                             flask.request.form['strain'],
