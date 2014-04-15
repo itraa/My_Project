@@ -1,0 +1,11 @@
+from flask.ext.mail import Message
+
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 587
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'xx@gmail.com'
+MAIL_PASSWORD = 'XXXXXXXXX'
+
+#administrator list
+ADMINS = ['xx@gmail.com']

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container"> 
+	<h3 class="pageSubHeader">Strain Information/Details</h3>
+            <h4 class="pageSubHeader">Create a new strain</h4>
+    	<form action="{{url_for('create_strain')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text"class="input-medium" placeholder="Strain name" name="strain_name"/></br>
+				<input type="text" class="input-medium" placeholder="Genetic background" name="genetic_background"/></br>
+    			<input type="text" class="input-medium" placeholder="Coat color" name="coat_color"/></br>
+				<input type="text" class="input-medium" placeholder="Strain description" name="strain_description"/></br>
+                <input type="text" class="input-medium" placeholder="Source of the strain" name="strain_source"/></br>
+                <input type="text" class="input-medium" placeholder="Source description" name="source_description"/></br>
+                <button type="submit" class="btn btn-inverse">Add</button>
+        	</form>
+		</form>
+</div>
+{% endblock %}

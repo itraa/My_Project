@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container"> 
+	<h3 class="pageSubHeader">Create mice list</h3>
+    		<form action="{{url_for('create_mice_list')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text"class="input-medium" placeholder="Cage id" name="cage_id"/></br>
+				<input type="text" class="input-medium" placeholder="Date created" name="date_created"/></br>
+    			<input type="text" class="input-medium" placeholder="Cage cost" name="cage_cost"/></br>
+				<input type="text" class="input-medium" placeholder="Mouse id" name="mouse_id"/></br>
+                <select name ="gender">
+                    <option disabled selected style='display:none;'>Choose the gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                <input type="text" class="input-medium" placeholder="Date of birth" name="date_of_birth"/></br>
+                <input type="text" class="input-medium" placeholder="Date of weaning" name="date_of_weaning"/></br>
+                <input type="text" class="input-medium" placeholder="Age" name="age"/></br>
+                <select name ="status">
+                    <option disabled selected style='display:none;'>Choose the status</option>
+                    <option value="Alive">Alive</option>
+                    <option value="Dead">Dead</option>
+                <input type="text" class="input-medium" placeholder="Breeding Cage Origin" name="bc_origin"/></br>
+                    {% if search_dict %}        
+                        <select name ="strain" id="Strain name">
+                        {% for dict in search_list %}
+                            <option disabled selected style='display:none;'>Choose the strain</option>
+                            <option value="dict.Strain_name">{{ dict.Strain_name }}</option>
+                        {% endfor %}
+                    {% endif %}
+                <select name ="use">
+                    <option disabled selected style='display:none;'>Choose where in use</option>
+                    <option value="Available">Available</option>
+                    <option value="Breeder">Breeder</option>
+                    <option value="In experiment">In experiment</option>
+                <input type="text" class="input-medium" placeholder="Date removed" name="date_removed"/></br>
+                <select name ="death">
+                    <option disabled selected style='display:none;'>Choose death information</option>
+                    <option value="Euthanasia">Euthanasia</option>
+                    <option value="Found dead">Found dead</option>
+                    <option value="Perfusion">Perfusion</option>
+                    <option value="Other">Other</option>
+                <input type="text" class="input-medium" placeholder="Notes" name="notes"/></br>
+                <button type="submit" class="btn btn-inverse">Add</button>
+        	</form>
+		</form>
+</div>
+{% endblock %}

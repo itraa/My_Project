@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container"> 
+	<h3 class="pageSubHeader">Add the breeding information</h3>
+    {% if strain_dict %}
+        {% if mice_dict %}       
+		<form action="{{url_for('add_breeding_info')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text"class="input-medium" placeholder="Breeding Cage" name="bc"/></br>
+
+                <select class="span3" name="mousetag">
+                    {% for dict in mice_list %}
+                    <option disabled selected style='display:none;'>Select Mouse</option>
+                        <option value="strain">{{ dict.Mouse_id }}</option>
+                    {% endfor %}
+                </select>
+                
+                <div class="input-append date"  data-date-format="yyyy-mm-dd">
+                    <input class="span2" id="dp1" size="16" type="text" name="dateofsetup" placeholder="Date of setup" readonly/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                <select class="span3" name ="pupstrain">
+                    {% for dict in strain_list %}
+                        <option disabled selected style='display:none;'>Choose pup strain</option>
+                        <option value="strain">{{ dict.Strain_name }}</option>
+                    {% endfor %}
+                </select>    	
+                
+                <div class="input-append date"  data-date-format="yyyy-mm-dd">
+                    <input class="span2" id="dp2" size="16" type="text" name="datepupsborn" placeholder="Date pups born" readonly/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>              
+                
+                <script>
+                    $('#dp1').datepicker({
+                      format: 'yyyy-mm-dd'
+                    });
+                </script>
+                
+                <script>
+                    $('#dp2').datepicker({
+                      format: 'yyyy-mm-dd'
+                    });
+                </script>
+                <button type="submit" class="btn btn-inverse">Add</button>
+        	</form>
+		</form>
+        {% else %}
+                <p>Please create the mouse list first!</p>        
+        {% endif %}    
+    {% else %}
+            <p>Please create the strains first!</p>
+            <form action="{{url_for('create_strain')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text"class="input-medium" placeholder="Strain name" name="strain_name"/></br>
+                <input type="text" class="input-medium" placeholder="Genetic background" name="genetic_background"/></br>
+                <input type="text" class="input-medium" placeholder="Coat color" name="coat_color"/></br>
+                <input type="text" class="input-medium" placeholder="Strain description" name="strain_description"/></br>
+                <input type="text" class="input-medium" placeholder="Source of the strain" name="strain_source"/></br>
+                <input type="text" class="input-medium" placeholder="Source description" name="source_description"/></br>
+                <button type="submit" class="btn btn-inverse">Add</button>
+            </form>
+            </form>
+    {% endif %}
+</div>
+{% endblock %}

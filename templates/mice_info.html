@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <h3 class ="pageSubHeader">Mice information</h3>
+        <form action="{{url_for('mice_info')}}" method="post">
+        {% if search_dict %}        
+        <select name ="dropdown" id="Strain name">
+                {% for dict in search_list %}
+                    <option>{{ dict.Strain_name }}</option>
+                {% endfor %}
+        {% endif %}
+            <form class = "form">
+                <input type="text" class="input-medium" placeholder="Number of animals" name="no_of_animals"/></br>
+                <button type="submit" class="btn btn-inverse">Create list</button>
+            </form>                
+        </form>
+</div>
+{% endblock %}

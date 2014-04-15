@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container-fluid">
+    <h3 class="pageSubHeader">Create mice list</h3>
+        {% if search_dict %}        
+            <form action="{{url_for('create_mice_list')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text" class="span3" placeholder="Mouse id" name="mouseid"/></br>
+                <input type="text"class="span3" placeholder="Cage id" name="cageid"/></br>
+                <div class="input-append date"  data-date-format="yyyy-mm-dd">
+                    <input class="span3" id="dp" size="10" type="text" placeholder="Date created" name="datecreated" readonly/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                <input type="text" class="span3" placeholder="Cage cost" name="cagecost"/></br>
+                <select class="span3" name="gender">
+                    <option disabled selected style='display:none;'>Choose the gender</option>
+                    <option value="gender">Female</option>
+                    <option value="gender">Male</option>
+                </select>
+                <div class="controls">
+                <div class="input-append date"  data-date-format="yyyy-mm-dd">
+                    <input class="span3" id="dp1" size="10" type="text" placeholder="Date of birth" name="dateofbirth" readonly/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                </div>
+                <div class="input-append date"  data-date-format="yyyy-mm-dd">
+                    <input class="span3" id="dp2" size="10" type="text" placeholder="Date of weaning" name="dateofweaning" readonly/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                <input type="text" class="span3" placeholder="Age" name="age"/></br>
+                <select class="span3" name ="status">
+                    <option disabled selected style='display:none;'>Choose the status</option>
+                    <option value="Alive">Alive</option>
+                    <option value="Dead">Dead</option>
+                </select>
+                <div class="controls">
+                    <input type="text" class="span3" placeholder="Breeding Cage Origin" name="bcorigin"/></br>
+                </div>
+                <select class="span3" name ="strain">
+                    {% for dict in search_list %}
+                        <option disabled selected style='display:none;'>Choose the strain</option>
+                        <option value="strain">{{ dict.Strain_name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="controls">
+                    <select class="span3" name ="use">
+                        <option disabled selected style='display:none;'>Choose where in use</option>
+                        <option value="Available">Available</option>
+                        <option value="Breeder">Breeder</option>
+                        <option value="In experiment">In experiment</option>
+                    </select>
+                </div>
+                <div class="input-append date"  data-date-format="yyyy-mm-dd">
+                    <input class="span3" id="dp3" size="10" type="text" placeholder="Date removed" name="dateremoved" readonly/>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                <select class="span3" name ="death">
+                    <option disabled selected style='display:none;'>Choose death information</option>
+                    <option value="Euthanasia">Euthanasia</option>
+                    <option value="Found dead">Found dead</option>
+                    <option value="Perfusion">Perfusion</option>
+                    <option value="Other">Other</option>
+                </select>
+                <div class="controls">
+                    <input type="text" class="span3" placeholder="Notes" name="notes"/></br>
+                </div>
+                <script>
+                    $('#dp').datepicker({
+                      format: 'yyyy-mm-dd'
+                    });
+                </script>
+
+                <script>
+                    $('#dp1').datepicker({
+                      format: 'yyyy-mm-dd'
+                    });
+                </script>
+
+                <script>
+                    $('#dp2').datepicker({
+                      format: 'yyyy-mm-dd'
+                    });
+                </script>
+
+                <script>
+                    $('#dp3').datepicker({
+                      format: 'yyyy-mm-dd'
+                    });
+                </script>
+
+                <button type="submit" class="btn btn-inverse">Add</button>
+            </form>
+        </form>
+    {% else %}
+            <p>Please create the strains first!</p>
+            <form action="{{url_for('create_strain')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text"class="input-medium" placeholder="Strain name" name="strain_name"/></br>
+                <input type="text" class="input-medium" placeholder="Genetic background" name="genetic_background"/></br>
+                <input type="text" class="input-medium" placeholder="Coat color" name="coat_color"/></br>
+                <input type="text" class="input-medium" placeholder="Strain description" name="strain_description"/></br>
+                <input type="text" class="input-medium" placeholder="Source of the strain" name="strain_source"/></br>
+                <input type="text" class="input-medium" placeholder="Source description" name="source_description"/></br>
+                <button type="submit" class="btn btn-inverse">Add</button>
+            </form>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

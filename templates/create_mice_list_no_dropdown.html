@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container"> 
+	<h3 class="pageSubHeader">Create mice list</h3>
+    		<form action="{{url_for('create_mice_list')}}" method="post">
+            <form class="form-horizontal">
+                <input type="text"class="input-medium" placeholder="Cage id" name="cage_id"/></br>
+				<input type="text" class="input-medium" placeholder="Date created" name="date_created"/></br>
+    			<input type="text" class="input-medium" placeholder="Cage cost" name="cage_cost"/></br>
+				<input type="text" class="input-medium" placeholder="Mouse id" name="mouse_id"/></br>
+                <input type="text" class="input-medium" placeholder="Gender" name="gender"/></br>
+                <input type="text" class="input-medium" placeholder="Date of birth" name="date_of_birth"/></br>
+                <input type="text" class="input-medium" placeholder="Date of weaning" name="date_of_weaning"/></br>
+                <input type="text" class="input-medium" placeholder="Age" name="age"/></br>
+                <input type="text" class="input-medium" placeholder="Status" name="status"/></br>
+                <input type="text" class="input-medium" placeholder="Breeding Cage Origin" name="bc_origin"/></br>
+                <input type="text" class="input-medium" placeholder="Strain name" name="strain"/></br>
+                <input type="text" class="input-medium" placeholder="Use" name="use"/></br>
+                <input type="text" class="input-medium" placeholder="Date removed" name="date_removed"/></br>
+                <input type="text" class="input-medium" placeholder="Death_info" name="death"/></br>
+                <input type="text" class="input-medium" placeholder="Notes" name="notes"/></br>
+                <button type="submit" class="btn btn-inverse">Add</button>
+        	</form>
+		</form>
+</div>
+{% endblock %}
